@@ -74,7 +74,7 @@ public class Driver {
                         String node = ConfigurationReader.getProperty("node");
                         ChromeOptions chromeOptions = new ChromeOptions();
                         chromeOptions.setCapability("platform", Platform.ANY);
-                        driverPool.set(new RemoteWebDriver(new URL(node+"/wd/hub"),chromeOptions));
+                        driverPool.set(new RemoteWebDriver(new URL(node + "/wd/hub"), chromeOptions));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -84,7 +84,7 @@ public class Driver {
                         String node = ConfigurationReader.getProperty("node");
                         FirefoxOptions firefoxOptions = new FirefoxOptions();
                         firefoxOptions.setCapability("platform", Platform.ANY);
-                        driverPool.set(new RemoteWebDriver(new URL(node+"/wd/hub"),firefoxOptions));
+                        driverPool.set(new RemoteWebDriver(new URL(node + "/wd/hub"), firefoxOptions));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -94,6 +94,7 @@ public class Driver {
         //return corresponded to thread id WebDriver object
         return driverPool.get();
     }
+
     public static void close() {
         driverPool.get().quit();
         driverPool.remove();

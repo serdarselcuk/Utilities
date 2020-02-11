@@ -1,8 +1,6 @@
 package com.trycloudapp.utilities;
 
-import java.awt.*;
-
-public class KeyFunction  {
+public class KeyFunction {
 
     private static Robot robot;
 
@@ -13,7 +11,7 @@ public class KeyFunction  {
             e.printStackTrace();
         }
 
-        if( System.getProperty("os.name").toLowerCase().charAt(0) == 'm'){
+        if (System.getProperty("os.name").toLowerCase().charAt(0) == 'm') {
             ifMACos();// if MacOs so need to pres (command+shift+G)
         }
     }
@@ -23,16 +21,16 @@ public class KeyFunction  {
     as string and put between them "+"
     EXAMPLE ( "12+23+1")
     */
-    public static void sendKeyToSystem(String string){
+    public static void sendKeyToSystem(String string) {
 
         String[] keys = string.split("\\+");
 
-        for (String key : keys ) {
+        for (String key : keys) {
 
             keyFuncPress(key);
         }
 
-        for (String key : keys ) {
+        for (String key : keys) {
 
             keyFuncRelease(key);
         }
@@ -43,7 +41,7 @@ public class KeyFunction  {
 
         int num = Integer.parseInt(key);
 
-            robot.keyPress(num);
+        robot.keyPress(num);
     }
 
     private static void keyFuncRelease(String key) {
@@ -52,7 +50,7 @@ public class KeyFunction  {
         robot.keyRelease(num);
     }
 
-    private static void  ifMACos(){
+    private static void ifMACos() {
 
         sendKeyToSystem("157+16+71");
     }

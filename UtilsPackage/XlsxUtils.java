@@ -5,7 +5,6 @@ import org.testng.Assert;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.util.*;
 
 public class ExcelUtil {
     private Sheet workSheet;
@@ -47,6 +46,10 @@ public class ExcelUtil {
         }
     }
 
+    public static void main(String[] args) {
+
+    }
+
     public String getCellData(int rowNum, int colNum) {
         Cell cell;
         try {
@@ -73,7 +76,6 @@ public class ExcelUtil {
         return data;
 
     }
-
 
     public List<Map<String, String>> getDataList() {
         // get all columns
@@ -141,10 +143,6 @@ public class ExcelUtil {
 
     public int rowCount() {
         return workSheet.getLastRowNum() + 1;
-    }
-
-    public static void main(String[] args) {
-
     }
 }
 

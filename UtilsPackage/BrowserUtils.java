@@ -16,9 +16,9 @@ import java.util.function.Function;
 public class BrowserUtils {
 
     public static void wait(int seconds) {
-        try{
-            Thread.sleep(1000*seconds);
-        } catch (InterruptedException e){
+        try {
+            Thread.sleep(1000 * seconds);
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
@@ -27,19 +27,20 @@ public class BrowserUtils {
      * Waits for element to be not stale
      * StaleElementReferenceException --> Indicates that a reference to an element is now "stale"
      * --- the element no longer appears on the DOM of the page.
+     *
      * @param element
      */
-    public static void waitForStaleElement(WebElement element){
-        int y=0;
-        while(y<=15){
-            try{
+    public static void waitForStaleElement(WebElement element) {
+        int y = 0;
+        while (y <= 15) {
+            try {
                 element.isDisplayed();
                 break;
-            } catch (StaleElementReferenceException st){
+            } catch (StaleElementReferenceException st) {
                 y++;
-                try{
+                try {
                     Thread.sleep(200);
-                } catch(InterruptedException e){
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
@@ -54,21 +55,22 @@ public class BrowserUtils {
      * @param timeToWaitInSec
      * @return
      */
-    public static WebElement waitForVisibility(WebElement element, int timeToWaitInSec){
+    public static WebElement waitForVisibility(WebElement element, int timeToWaitInSec) {
         WebDriverWait wait = new WebDriverWait(Driver.get(), timeToWaitInSec);
         return wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public static WebElement waitForPresence(By locator, int timeToWaitInSec){
+    public static WebElement waitForPresence(By locator, int timeToWaitInSec) {
         WebDriverWait wait = new WebDriverWait(Driver.get(), timeToWaitInSec);
         return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
+
     /**
      * Clicks on an element using JavaScript
      *
      * @param element
      */
-    public static void clickWithJS(WebElement element){
+    public static void clickWithJS(WebElement element) {
         JavascriptExecutor js = (JavascriptExecutor) Driver.get();
         js.executeScript("arguments[0].scrollIntoView(true);", element);
         js.executeScript("arguments[0].click();", element);
@@ -81,7 +83,7 @@ public class BrowserUtils {
      * @param timeToWaitInSec
      * @return
      */
-    public static WebElement waitForClickability(WebElement element, int timeToWaitInSec){
+    public static WebElement waitForClickability(WebElement element, int timeToWaitInSec) {
         WebDriverWait wait = new WebDriverWait(Driver.get(), timeToWaitInSec);
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
@@ -89,6 +91,7 @@ public class BrowserUtils {
     public static String getDate() {
         return new SimpleDateFormat("-yyyy-MM-dd-HH-mm").format(new Date());
     }
+
     /*
      * takes screenshot
      * @param name
@@ -161,6 +164,7 @@ public class BrowserUtils {
 
     /**
      * Wait for proper page title.
+     *
      * @param pageTitle
      */
     public static void waitForPageTitle(String pageTitle) {
@@ -170,18 +174,17 @@ public class BrowserUtils {
     }
 
 
-
     //To print test case number and verifying expected and actual result are the same
-    public static void print(int testCaseNumber,String expected, String actual){
-        System.out.println("Test-Case: "+testCaseNumber+ " "+(expected.equals(actual)? "Pass" : "Fail"));
-        System.out.println("Expected result:\t"+expected);
-        System.out.println("Actual result:\t\t"+actual+"\n");
+    public static void print(int testCaseNumber, String expected, String actual) {
+        System.out.println("Test-Case: " + testCaseNumber + " " + (expected.equals(actual) ? "Pass" : "Fail"));
+        System.out.println("Expected result:\t" + expected);
+        System.out.println("Actual result:\t\t" + actual + "\n");
     }
 
     //To print expected and actual result for only one test case (Overloading method)
-    public static void print(String expected, String actual){
-        System.out.println("Expected result:\t"+expected);
-        System.out.println("Actual result:\t\t"+actual+"\n");
+    public static void print(String expected, String actual) {
+        System.out.println("Expected result:\t" + expected);
+        System.out.println("Actual result:\t\t" + actual + "\n");
     }
 
     /**
@@ -196,7 +199,7 @@ public class BrowserUtils {
             String value = element.getText().trim();
             //If there is no text
             //do not add this black text into list
-            if(value.length()>0){
+            if (value.length() > 0) {
                 listOfStrings.add(value);
             }
         }

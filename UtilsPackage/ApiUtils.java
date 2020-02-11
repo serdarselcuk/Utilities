@@ -9,11 +9,12 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 
-import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.*;
+import static io.restassured.RestAssured.given;
 
 public class APIUtilities {
-    private static  String URI = ConfigurationReader.getProperty("spartan.uri");
+    private static String URI = ConfigurationReader.getProperty("spartan.uri");
+
     /**
      * This method can POST new spartan
      *
@@ -36,7 +37,7 @@ public class APIUtilities {
      * @param spartan POJO
      * @return response object
      */
-    public static  Response postSpartan(Spartan spartan) {
+    public static Response postSpartan(Spartan spartan) {
         Response response = given().
                 contentType(ContentType.JSON).
                 basePath(URI).
@@ -65,6 +66,7 @@ public class APIUtilities {
 
     /**
      * Method to delete spartan
+     *
      * @param id of spartan that you would like to delete
      * @return response object that you can assert later
      */
@@ -75,9 +77,10 @@ public class APIUtilities {
 
     /**
      * Delete all spartans
+     *
      * @return response
      */
-    public static void deleteAllSpartans(){
+    public static void deleteAllSpartans() {
         Response response = given().
                 basePath(baseURI).
                 accept(ContentType.JSON).
@@ -85,10 +88,10 @@ public class APIUtilities {
                 get("/spartans");
         //I collected all user id's
         List<Integer> userIDs = response.jsonPath().getList("id");
-        for(int i=0; i< userIDs.size();i++){
+        for (int i = 0; i < userIDs.size(); i++) {
             //will delete spartan based on id that you specify
             when().delete("/spartans/{id}", userIDs.get(i)).then().assertThat().statusCode(204);
-            System.out.println("Deleted spartan with id: "+userIDs.get(i));
+            System.out.println("Deleted spartan with id: " + userIDs.get(i));
         }
     }
 }
